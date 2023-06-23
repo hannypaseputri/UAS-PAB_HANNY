@@ -52,7 +52,9 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
     public void onBindViewHolder(@NonNull TravelAdapter.ViewHolder holder, int position) {
         TravelData data = mList.get(position);
 
-        Picasso.get().load(Utilities.convertBase64ToUri(context, data.getImage())).into(holder.ivWisata);
+        if (data.getImage() != null){
+            Picasso.get().load(Utilities.convertBase64ToUri(context, data.getImage())).into(holder.ivWisata);
+        }
         holder.tvWisata.setText(data.getTitle());
         holder.tvDeskripsi.setText(data.getDescription());
 
