@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.si6a.wisataindonesia.R;
 import com.si6a.wisataindonesia.Utilities.Utilities;
 import com.si6a.wisataindonesia.model.TravelData;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
     public void onBindViewHolder(@NonNull TravelAdapter.ViewHolder holder, int position) {
         TravelData data = mList.get(position);
 
-        holder.ivWisata.setImageBitmap(Utilities.convertBase64ToBitmap(data.getImage()));
+        Picasso.get().load(Utilities.convertBase64ToUri(context, data.getImage())).into(holder.ivWisata);
         holder.tvWisata.setText(data.getTitle());
         holder.tvDeskripsi.setText(data.getDescription());
 

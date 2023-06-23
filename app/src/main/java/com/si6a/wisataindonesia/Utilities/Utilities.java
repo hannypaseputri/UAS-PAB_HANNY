@@ -80,9 +80,20 @@ public class Utilities {
         return result;
     }
 
-    public static Bitmap convertBase64ToBitmap(String base64Image){
-        byte[] imageByte = Base64.decode(base64Image, Base64.URL_SAFE);
-        return BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
+    public static Uri convertBase64ToUri(Context context, String base64String) {
+        byte[] decodedBytes = Base64.decode(base64String, Base64.URL_SAFE);
+        String fileName = System.currentTimeMillis() + ".png"; // You can change the file name and extension according to your requirements
+        File outputFile = new File(context.getCacheDir(), fileName);
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(outputFile);
+            outputStream.write(decodedBytes);
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return Uri.fromFile(outputFile);
     }
 
 

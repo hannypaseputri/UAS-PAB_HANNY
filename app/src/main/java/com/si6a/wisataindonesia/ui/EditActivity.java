@@ -18,6 +18,7 @@ import com.si6a.wisataindonesia.databinding.ActivityAddBinding;
 import com.si6a.wisataindonesia.databinding.ActivityEditBinding;
 import com.si6a.wisataindonesia.model.ResponseData;
 import com.si6a.wisataindonesia.model.TravelData;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -51,7 +52,7 @@ public class EditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         TravelData data = Utilities.travelData;
-        binding.ivFoto.setImageBitmap(Utilities.convertBase64ToBitmap(data.getImage()));
+        Picasso.get().load(Utilities.convertBase64ToUri(this, data.getImage())).into(binding.ivFoto);
         binding.etTitle.setText(data.getTitle());
         binding.etDescription.setText(data.getDescription());
 
