@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Belum ada data buku"
+        android:text="Belum ada data wisata"
         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
         android:visibility="gone" />
 
