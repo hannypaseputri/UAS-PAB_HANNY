@@ -19,6 +19,13 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <TextView
         android:id="@+id/tv_empty"
         android:layout_width="wrap_content"
@@ -35,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/round_add_24"
-        app:useCompatPadding="true"
-        android:contentDescription="@string/app_name" />
+        app:useCompatPadding="true" />
 </RelativeLayout>

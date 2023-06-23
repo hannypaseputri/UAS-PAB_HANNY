@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.rvTravel.setLayoutManager(new LinearLayoutManager(this));
-        binding.tvEmpty.setVisibility(View.VISIBLE);
         fetchData();
 
         binding.fabAdd.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
+        binding.progressBar.setVisibility(View.VISIBLE);
         RetrofitClient.getInstance().fetchAllTravels().enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -84,10 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
                     setOnClick(adapter, travelDataList);
                 }
+                binding.progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -170,5 +172,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        fetchData();
     }
 }
